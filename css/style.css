@@ -43,3 +43,32 @@ body {
         width: 250px;
     }
 }
+
+
+
+
+.fiklogo{
+    height: 65px;
+    padding-top: 15px;
+    font-size: 40px;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    color: rgb(106,106,106);
+}
+.fiklogo .fik{
+    font-weight:800;
+    color: rgb(51,51,51);
+}
+.fiklogo .fik .kern{
+    letter-spacing: -0.04em;
+}
+
+
+.fikinitiative{
+    background: url("images/thefikinitiative_h65.png") no-repeat scroll 60px 0 transparent;
+    padding-left: 0px;
+}
+
+.fikinitiative .fik {
+    padding-left: 70px;
+}

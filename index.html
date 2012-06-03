@@ -1,25 +1,304 @@
 <html>
     <head>
-        <title>Postcards from Thumbs</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+        </title>
         <script type="text/javascript" charset="utf8" src="cordova-1.7.0.js"></script>
-        <link rel="stylesheet" href="style.css" />
-        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <script type="text/javascript" charset="utf8" src="js/app.js"></script>
+        <link rel="stylesheet" href="css/jquery.mobile-1.1.0.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="js/jquery.min.js">
+        </script>
+        <script src="js/jquery.mobile-1.1.0.min.js">
+        </script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    function sendImage(src) {
+        
+        // Set the image source [library || camera]
+        src = (src == 'library') ? Camera.PictureSourceType.PHOTOLIBRARY : Camera.PictureSourceType.CAMERA;
+        
+        // Aquire the image -> Phonegap API
+        navigator.camera.getPicture(success, fail, {quality: 45, sourceType: src, destinationType: 0});
+        
+        // Successfully aquired image data -> base64 encoded string of the image file
+        function success(imageData) {
+            alert(imageData);
+            var url = 'http://litio.net/chancla/sube.php';
+            var params = {image: imageData};
+            
+            // send the data
+            $.post(url, params, function(data) {
+                
+                // Display the selected image on send complete
+                $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
+                
+            });
+        }
+        
+        function fail(message) { alert(message); }
+    }
+    
+    $('.send-image').click(function () { sendImage($(this).val()); }); 
+});
+
+</script>
+
 
     </head>
     <body>
-        <div id="main">
-            <h1 id="pageTitle">Postcards</h1>
-            <form id="newPostcard">
-                <textarea id="postcardContents"></textarea><br>
-                <button id="postTheCard">Post It</button><br>
-            </form>
+        <div data-role="page" id="page1">
 
-            <div id="postcards-posted">
+            <div data-role="content">
+                <div id="main-logo">
+                <h1 class="fiklogo fikinitiative">
+                the<span class="fik">f<span class="kern">i</span>k</span>initiative
+                </h1>
+                </div>
+                <div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
+                    <img src="image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
+                </div>
+                <div>
+                    <p>
+                        <strong>
+                            We love slippers, flip-flops, slippers... you name it.
+                        </strong>
+                    </p>
+
+                        <p>Our aim is to have the largest collection of photos of slippers and all their crazy variants. </p>
+
+                        <p>Can you help us out?</p>
+                        <br />
+                        <br />
+                </div>
+
+                <a data-role="button" data-transition="flip" href="#page5">
+                    Send us a photo of your slippers
+                </a>
+            </div>
+
+            <div data-role="footer">
+                hi
             </div>
         </div>
+
+
+
+        <div data-role="page" data-theme="b" id="page2">
+            <div data-theme="a" data-role="header">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#page2" data-theme="" data-icon="grid" class="ui-btn-active">
+                                Inventory
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#page1" data-theme="" data-icon="gear">
+                                Categories
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#page1" data-theme="" data-icon="plus">
+                                Add product
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="content">
+                <div style="">
+                    <img style="width: 288px; height: 80px" src="img/codiqa_logo.png" />
+                </div>
+                <div>
+                    <b>
+                        Welcome to Codiqa!
+                        <br />
+                        <br />
+                    </b>
+                </div>
+                <div>
+                <ul data-role="listview" data-divider-theme="b" data-inset="false">
+                    <li data-role="list-divider" role="heading">
+                        Divider
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page1" data-transition="slide">
+                            Product 1
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page1" data-transition="slide">
+                            Button
+                        </a>
+                    </li>
+                    <li data-role="list-divider" role="heading">
+                        Divider 
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page1" data-transition="slide">
+                            Button 4
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page1" data-transition="slide">
+                            Button 5
+                        </a>
+                    </li>
+                </ul>
+                </div>
+                <div>
+                    <br />
+                    Don't be afraid to experiment. If you leave this page your work will be here when you come back (for the length of your session).
+                    <br />
+                    <br />
+                    <b>
+                        Have fun! Need help or have feedback?&nbsp;Email us at
+                        <a title="Link: null">
+                            hi@codiqa.com.
+                        </a>
+                    </b>
+                    <br />
+                </div>
+            </div>
+        </div>   
+
+
+        <div data-role="page" id="page5">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    Add a slipper
+                </h3>
+            </div>
+            <div data-role="content">
+                <div>
+                    <b>
+                        Enter content here...
+                    </b>
+                </div>
+
+    <p>
+        <img style="width:60px; height:60px" id="image" src="" />
+    </p>
+    <p>
+        <input type="button" class="send-image" value="camera" />
+        <input type="button" class="send-image" value="library" />
+    </p>
+
+
+
+
+
+                <form action="">
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                            <label for="textinput3">
+                                Product Name
+                            </label>
+                            <input id="textinput3" placeholder="Product Name" value="" type="text" />
+                        </fieldset>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                            <label for="textarea2">
+                                Title
+                            </label>
+                            <textarea id="textarea2" placeholder="Textarea">
+                            </textarea>
+                        </fieldset>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="selectmenu2">
+                            Choose:
+                        </label>
+                        <select name="selectmenu2" id="selectmenu2">
+                            <option value="option1">
+                                Option 1
+                            </option>
+                            <option value="value">
+                                Option
+                            </option>
+                            <option value="value">
+                                Option
+                            </option>
+                        </select>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup" data-type="vertical">
+                            <legend>
+                                Choose:
+                            </legend>
+                            <input name="radiobuttons2" id="radio5" value="" type="radio" />
+                            <label for="radio5">
+                                Option
+                            </label>
+                        </fieldset>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                            <label for="toggleswitch2">
+                                Toggle
+                            </label>
+                            <select name="toggleswitch2" id="toggleswitch2" data-theme="" data-role="slider">
+                                <option value="off">
+                                    Off
+                                </option>
+                                <option value="on">
+                                    On
+                                </option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup" data-type="vertical">
+                            <legend>
+                                Choose:
+                            </legend>
+                            <input name="checkbox1" id="checkbox1" type="checkbox" />
+                            <label for="checkbox1">
+                                Checkbox
+                            </label>
+                            <input name="checkbox2" id="checkbox2" type="checkbox" />
+                            <label for="checkbox2">
+                                Checkbox
+                            </label>
+                            <input name="checkbox3" id="checkbox3" type="checkbox" />
+                            <label for="checkbox3">
+                                Checkbox
+                            </label>
+                        </fieldset>
+                    </div>
+                    <input type="submit" data-inline="true" data-icon="arrow-l" data-iconpos="left" value="Submit" />
+                    <input type="submit" data-inline="true" value="Submit" />
+                    <input type="submit" value="Submit" />
+                </form>
+                <div data-role="fieldcontain">
+                    <label for="selectmenu1">
+                        Choose:
+                    </label>
+                    <select name="selectmenu1" id="selectmenu1">
+                        <option value="option1">
+                            Option 1
+                        </option>
+                    </select>
+                </div>
+                <input type="submit" value="Submit" />
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="textarea1">
+                            Title
+                        </label>
+                        <textarea id="textarea1" placeholder="">
+                        </textarea>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
     </body>
-    <script src="phonegap.js"></script>
-    <script src="xui.js"></script>
-    <script src="mustache.js"></script>
-    <script src="app.js"></script>
+    
 </html>
