@@ -19,15 +19,16 @@ $('#tf_page_login_submit').live('click',function(){
       type: 'post',
       data: 'username=' + name + '&password=' + pass,
       dataType: 'json',
+
+      success: function (data) {
+        document.location.href="../index.html#tf_page_dashboard";
+      },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         alert('tf_page_login_submit - failed to login');
         console.log(JSON.stringify(XMLHttpRequest));
         console.log(JSON.stringify(textStatus));
         console.log(JSON.stringify(errorThrown));
       },
-      success: function (data) {
-        document.location.href="../index.html#tf_page_dashboard";
-      }
   });
   // END: drupal services user login
   return false;
