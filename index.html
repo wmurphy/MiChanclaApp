@@ -35,8 +35,9 @@ $(document).ready(function() {
             $.post(url, params, function(data) {
                 
                 // Display the selected image on send complete
+                $.mobile.changePage( $("#page2"), { transition: "slideup"} );
                 $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
-                document.location.href = "../index.html#page2";
+                
                 
             });
         }
