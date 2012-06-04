@@ -36,7 +36,7 @@ $(document).ready(function() {
                 // Display the selected image on send complete
                 
                 $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
-                $.mobile.changePage( $("#page2"), { transition: "slideup"} );
+                $.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
                 
                 
             });
@@ -48,7 +48,8 @@ $(document).ready(function() {
     function testImage() {
         //alert("You have been logged out.");
             //$.mobile.loading( 'show', { text: "uploading photo" });
-            $.mobile.loading( 'show' );
+            //$.mobile.loading( 'show' );
+            $.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
 
     }
     
@@ -85,46 +86,41 @@ $(document).ready(function() {
                 </div>
                 <input type="button" class="send-image" value="camera" />
                 <input type="button" class="send-image" value="library" />
-                <input type="button" class="test" value="library" />
+                <hr />
+                <input type="button" class="test" value="test" />
             </div>
         </div>
 
 
 
-        <div data-role="page" id="page2">
+        <div data-role="page" id="chancla_details">
             <div data-theme="a" data-role="header">
                 <h3>
                     Review submition
                 </h3>
             </div>
             <div data-role="content">
-                <div>
-                    <img src="" id="image" alt="image" style="width: 50%;" />
-                </div>
 
 
-    <p>
-        <img style="width:60px; height:60px" id="image" src="" />
-    </p>
-    <p>
 
-    </p>
-
-
-                <form action="http://michancla.es/upload.php" method="POST">
+                <form action="#chancla_details" method="POST">
                     <div data-role="fieldcontain">
                         <fieldset data-role="controlgroup">
-                            <label for="textinput3">
+                            <label for="description">
                                 Description
                             </label>
-                            <input id="textinput3" placeholder="Description..." value="" type="text" />
+                            <input id="description" placeholder="Description..." value="" type="text" />
                         </fieldset>
                     </div>
+                <div>
+                    <img src="" id="image" alt="image" style="width: 100%;" />
+                </div>
+
                     <div data-role="fieldcontain">
-                        <label for="selectmenu1">
+                        <label for="category">
                             Category
                         </label>
-                        <select name="selectmenu1" id="selectmenu1">
+                        <select name="category" id="category">
                             <option value="casual">
                                 Casual
                             </option>
@@ -139,7 +135,7 @@ $(document).ready(function() {
                             </option>
                         </select>
                     </div>
-                    <input type="submit" data-icon="check" data-iconpos="left" value="Send" />
+                    <input type="submit" data-theme="e" value="Send" />
                 </form>
             </div>
         </div>
