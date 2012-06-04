@@ -51,92 +51,44 @@ $(document).ready(function() {
 
     </head>
     <body>
-        <div data-role="page" id="page1">
-            <div data-theme="a" data-role="header">
-                <h3>
-                    Mi Chancla
-                </h3>
-            </div>
-            <div data-role="content">
-                <div>
-                    <p>
-                        <strong>
-                            We love chanclas!
-                            <br />
-                            <br />
-                        </strong>
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        Upload a photo of your chanclas, or a friends, or any chancla you see around.
-                        <br />
-                    </p>
-                </div>
-                <a data-role="button" data-transition="fade" href="#page2">
-                    Start
-                </a>
-            </div>
-        </div>
 
 
+<div data-role="page" id="tf_page_dashboard">
+  <script type="text/javascript" charset="utf-8" src="js/dashboard.js"></script>
 
-        <div data-role="page" id="page2">
-            <div data-theme="a" data-role="header">
-                <h3>
-                    Upload photo
-                </h3>
-            </div>
-            <div data-role="content">
-                <div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
-                    <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
-                </div>
-                <a data-role="button" data-transition="fade" href="page1">
-                    Choose photo
-                </a>
+  <div data-role="header">
+    <h1>Dashboard</h1>
+  </div><!-- /header -->
 
+  <div data-role="content">
+    <p><a href="#tf_page_login" data-role="button" id="tf_login_button">Login</a></p>
+    <p><a href="#" data-role="button" id="tf_logout_button">Logout</a></p>
+  </div><!-- /content -->
 
-    <p>
-        <img style="width:60px; height:60px" id="image" src="" />
-    </p>
-    <p>
-        <input type="button" class="send-image" value="camera" />
-        <input type="button" class="send-image" value="library" />
-    </p>
+</div><!-- /page -->
 
+<div data-role="page" id="tf_page_login">
+  <script type="text/javascript" charset="utf-8" src="js/login.js"></script>
 
-                <form action="http://michancla.es/upload.php" method="POST">
-                    <div data-role="fieldcontain">
-                        <fieldset data-role="controlgroup">
-                            <label for="textinput3">
-                                Description
-                            </label>
-                            <input id="textinput3" placeholder="Description..." value="" type="text" />
-                        </fieldset>
-                    </div>
-                    <div data-role="fieldcontain">
-                        <label for="selectmenu1">
-                            Category
-                        </label>
-                        <select name="selectmenu1" id="selectmenu1">
-                            <option value="casual">
-                                Casual
-                            </option>
-                            <option value="fun">
-                                Fun
-                            </option>
-                            <option value="style">
-                                Style
-                            </option>
-                            <option value="other">
-                                Other
-                            </option>
-                        </select>
-                    </div>
-                    <input type="submit" data-icon="check" data-iconpos="left" value="Send" />
-                </form>
-            </div>
-        </div>
+  <div data-role="header">
+    <h1>Login</h1>
+  </div><!-- /header -->
+
+  <div data-role="content" class='content'>
+    <div>
+      <label for="tf_page_login_name">Username</label>
+      <input type="text" id="tf_page_login_name" />
+    </div>
+    <div>
+      <label for="tf_page_login_pass">Password</label>
+      <input type="password" id="tf_page_login_pass" />
+    </div>
+    <fieldset>
+      <div><button type="button" data-theme="b" id="tf_page_login_submit">Login</button></div>
+    </fieldset>
+  </div><!-- /content -->
+
+</div><!-- /page -->
 
     </body>
     
