@@ -52,134 +52,49 @@ $(document).ready(function() {
     </head>
     <body>
         <div data-role="page" id="page1">
-
+            <div data-theme="a" data-role="header">
+                <h3>
+                    Mi Chancla
+                </h3>
+            </div>
             <div data-role="content">
-                <div id="main-logo">
-                <h1 class="fiklogo fikinitiative">
-                the<span class="fik">f<span class="kern">i</span>k</span>initiative
-                </h1>
-                </div>
-                <div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
-                    <img src="image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
-                </div>
                 <div>
                     <p>
                         <strong>
-                            We love slippers, flip-flops, slippers... you name it.
+                            We love chanclas!
+                            <br />
+                            <br />
                         </strong>
                     </p>
-
-                        <p>Our aim is to have the largest collection of photos of slippers and all their crazy variants. </p>
-
-                        <p>Can you help us out?</p>
-                        <br />
-                        <br />
                 </div>
-
-                <a data-role="button" data-transition="flip" href="#page5">
-                    Send us a photo of your slippers
+                <div>
+                    <p>
+                        Upload a photo of your chanclas, or a friends, or any chancla you see around.
+                        <br />
+                    </p>
+                </div>
+                <a data-role="button" data-transition="fade" href="#page2">
+                    Start
                 </a>
-            </div>
-
-            <div data-role="footer">
-                hi
             </div>
         </div>
 
 
 
-        <div data-role="page" data-theme="b" id="page2">
-            <div data-theme="a" data-role="header">
-                <div data-role="navbar" data-iconpos="top">
-                    <ul>
-                        <li>
-                            <a href="#page2" data-theme="" data-icon="grid" class="ui-btn-active">
-                                Inventory
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#page1" data-theme="" data-icon="gear">
-                                Categories
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#page1" data-theme="" data-icon="plus">
-                                Add product
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div data-role="content">
-                <div style="">
-                    <img style="width: 288px; height: 80px" src="img/codiqa_logo.png" />
-                </div>
-                <div>
-                    <b>
-                        Welcome to Codiqa!
-                        <br />
-                        <br />
-                    </b>
-                </div>
-                <div>
-                <ul data-role="listview" data-divider-theme="b" data-inset="false">
-                    <li data-role="list-divider" role="heading">
-                        Divider
-                    </li>
-                    <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Product 1
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Button
-                        </a>
-                    </li>
-                    <li data-role="list-divider" role="heading">
-                        Divider 
-                    </li>
-                    <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Button 4
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Button 5
-                        </a>
-                    </li>
-                </ul>
-                </div>
-                <div>
-                    <br />
-                    Don't be afraid to experiment. If you leave this page your work will be here when you come back (for the length of your session).
-                    <br />
-                    <br />
-                    <b>
-                        Have fun! Need help or have feedback?&nbsp;Email us at
-                        <a title="Link: null">
-                            hi@codiqa.com.
-                        </a>
-                    </b>
-                    <br />
-                </div>
-            </div>
-        </div>   
-
-
-        <div data-role="page" id="page5">
+        <div data-role="page" id="page2">
             <div data-theme="a" data-role="header">
                 <h3>
-                    Add a slipper
+                    Upload photo
                 </h3>
             </div>
             <div data-role="content">
-                <div>
-                    <b>
-                        Enter content here...
-                    </b>
+                <div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
+                    <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
+                <a data-role="button" data-transition="fade" href="page1">
+                    Choose photo
+                </a>
+
 
     <p>
         <img style="width:60px; height:60px" id="image" src="" />
@@ -190,112 +105,36 @@ $(document).ready(function() {
     </p>
 
 
-
-
-
-                <form action="">
+                <form action="http://michancla.es/upload.php" method="POST">
                     <div data-role="fieldcontain">
                         <fieldset data-role="controlgroup">
                             <label for="textinput3">
-                                Product Name
+                                Description
                             </label>
-                            <input id="textinput3" placeholder="Product Name" value="" type="text" />
+                            <input id="textinput3" placeholder="Description..." value="" type="text" />
                         </fieldset>
                     </div>
                     <div data-role="fieldcontain">
-                        <fieldset data-role="controlgroup">
-                            <label for="textarea2">
-                                Title
-                            </label>
-                            <textarea id="textarea2" placeholder="Textarea">
-                            </textarea>
-                        </fieldset>
-                    </div>
-                    <div data-role="fieldcontain">
-                        <label for="selectmenu2">
-                            Choose:
+                        <label for="selectmenu1">
+                            Category
                         </label>
-                        <select name="selectmenu2" id="selectmenu2">
-                            <option value="option1">
-                                Option 1
+                        <select name="selectmenu1" id="selectmenu1">
+                            <option value="casual">
+                                Casual
                             </option>
-                            <option value="value">
-                                Option
+                            <option value="fun">
+                                Fun
                             </option>
-                            <option value="value">
-                                Option
+                            <option value="style">
+                                Style
+                            </option>
+                            <option value="other">
+                                Other
                             </option>
                         </select>
                     </div>
-                    <div data-role="fieldcontain">
-                        <fieldset data-role="controlgroup" data-type="vertical">
-                            <legend>
-                                Choose:
-                            </legend>
-                            <input name="radiobuttons2" id="radio5" value="" type="radio" />
-                            <label for="radio5">
-                                Option
-                            </label>
-                        </fieldset>
-                    </div>
-                    <div data-role="fieldcontain">
-                        <fieldset data-role="controlgroup">
-                            <label for="toggleswitch2">
-                                Toggle
-                            </label>
-                            <select name="toggleswitch2" id="toggleswitch2" data-theme="" data-role="slider">
-                                <option value="off">
-                                    Off
-                                </option>
-                                <option value="on">
-                                    On
-                                </option>
-                            </select>
-                        </fieldset>
-                    </div>
-                    <div data-role="fieldcontain">
-                        <fieldset data-role="controlgroup" data-type="vertical">
-                            <legend>
-                                Choose:
-                            </legend>
-                            <input name="checkbox1" id="checkbox1" type="checkbox" />
-                            <label for="checkbox1">
-                                Checkbox
-                            </label>
-                            <input name="checkbox2" id="checkbox2" type="checkbox" />
-                            <label for="checkbox2">
-                                Checkbox
-                            </label>
-                            <input name="checkbox3" id="checkbox3" type="checkbox" />
-                            <label for="checkbox3">
-                                Checkbox
-                            </label>
-                        </fieldset>
-                    </div>
-                    <input type="submit" data-inline="true" data-icon="arrow-l" data-iconpos="left" value="Submit" />
-                    <input type="submit" data-inline="true" value="Submit" />
-                    <input type="submit" value="Submit" />
+                    <input type="submit" data-icon="check" data-iconpos="left" value="Send" />
                 </form>
-                <div data-role="fieldcontain">
-                    <label for="selectmenu1">
-                        Choose:
-                    </label>
-                    <select name="selectmenu1" id="selectmenu1">
-                        <option value="option1">
-                            Option 1
-                        </option>
-                    </select>
-                </div>
-                <input type="submit" value="Submit" />
-                <div data-role="fieldcontain">
-                    <fieldset data-role="controlgroup">
-                        <label for="textarea1">
-                            Title
-                        </label>
-                        <textarea id="textarea1" placeholder="">
-                        </textarea>
-                    </fieldset>
-                </div>
             </div>
         </div>
 
