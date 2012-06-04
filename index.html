@@ -30,13 +30,15 @@ $(document).ready(function() {
             
             var url = 'http://litio.net/chancla/sube.php';
             var params = {image: imageData};
-            
+            $.mobile.loading( 'show', { text: "uploading photo" });
             // send the data
             $.post(url, params, function(data) {
                 
                 // Display the selected image on send complete
-                $.mobile.changePage( $("#page2"), { transition: "slideup"} );
+                
                 $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
+                $.mobile.changePage( $("#page2"), { transition: "slideup"} );
+                $.mobile.hidePageLoadingMsg();
                 
                 
             });
@@ -44,8 +46,39 @@ $(document).ready(function() {
         
         function fail(message) { alert(message); }
     }
+
+    function testImage(src) {
+        
+        // Set the image source [library || camera]
+        //src = (src == 'library') ? Camera.PictureSourceType.PHOTOLIBRARY : Camera.PictureSourceType.CAMERA;
+        
+        // Aquire the image -> Phonegap API
+        //navigator.camera.getPicture(success, fail, {quality: 45, sourceType: src, destinationType: 0});
+        
+        // Successfully aquired image data -> base64 encoded string of the image file
+        //function success(imageData) {
+            
+            var url = 'http://litio.net/chancla/sube.php';
+            var params = {image: imageData};
+            $.mobile.loading( 'show', { text: "uploading photo" });
+            // send the data
+            //$.post(url, params, function(data) {
+                
+                // Display the selected image on send complete
+                
+            //    $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
+            //    $.mobile.changePage( $("#page2"), { transition: "slideup"} );
+            //    $.mobile.hidePageLoadingMsg();
+                
+                
+            });
+        //}
+        
+        //function fail(message) { alert(message); }
+    }
     
     $('.send-image').click(function () { sendImage($(this).val()); }); 
+    $('.test').click(function () { testImage($(this).val()); }); 
 });
 
 </script>
@@ -77,6 +110,7 @@ $(document).ready(function() {
                 </div>
                 <input type="button" class="send-image" value="camera" />
                 <input type="button" class="send-image" value="library" />
+                <input type="button" class="test-image" value="library" />
             </div>
         </div>
 
@@ -85,16 +119,13 @@ $(document).ready(function() {
         <div data-role="page" id="page2">
             <div data-theme="a" data-role="header">
                 <h3>
-                    Upload photo
+                    Review submision
                 </h3>
             </div>
             <div data-role="content">
-                <div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
-                    <img src="" id="image" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
+                <div>
+                    <img src="" id="image" alt="image" style="width: 100%;" />
                 </div>
-                <a data-role="button" data-transition="fade" href="page1">
-                    Choose photo
-                </a>
 
 
     <p>
