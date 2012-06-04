@@ -30,7 +30,6 @@ $(document).ready(function() {
             
             var url = 'http://litio.net/chancla/sube.php';
             var params = {image: imageData};
-            $.mobile.loading( 'show', { text: "uploading photo" });
             // send the data
             $.post(url, params, function(data) {
                 
@@ -38,7 +37,6 @@ $(document).ready(function() {
                 
                 $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
                 $.mobile.changePage( $("#page2"), { transition: "slideup"} );
-                $.mobile.hidePageLoadingMsg();
                 
                 
             });
@@ -46,9 +44,16 @@ $(document).ready(function() {
         
         function fail(message) { alert(message); }
     }
+
+    function testImage() {
+        //alert("You have been logged out.");
+            //$.mobile.loading( 'show', { text: "uploading photo" });
+            $.mobile.loading( 'show' );
+
+    }
     
     $('.send-image').click(function () { sendImage($(this).val()); }); 
-    $('.test').click(function () { testImage($(this).val()); }); 
+    $('.test').click(function () { testImage(); }); 
 });
 
 </script>
@@ -80,6 +85,7 @@ $(document).ready(function() {
                 </div>
                 <input type="button" class="send-image" value="camera" />
                 <input type="button" class="send-image" value="library" />
+                <input type="button" class="test" value="library" />
             </div>
         </div>
 
@@ -88,12 +94,12 @@ $(document).ready(function() {
         <div data-role="page" id="page2">
             <div data-theme="a" data-role="header">
                 <h3>
-                    Review submi
+                    Review submition
                 </h3>
             </div>
             <div data-role="content">
                 <div>
-                    <img src="" id="image" alt="image" style="width: 100%;" />
+                    <img src="" id="image" alt="image" style="width: 50%;" />
                 </div>
 
 
