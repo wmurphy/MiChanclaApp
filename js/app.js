@@ -8,21 +8,21 @@ function postcardMarkup(text, place) {
 }
 
 function appendNewPostcard(text, place) {
-    x$('#postcards-posted').top(postcardMarkup(text, place));
+    $('#postcards-posted').top(postcardMarkup(text, place));
     bindLongTouchListener();
 }
 
-x$(document).on('DOMContentLoaded', function (e) {
+/*$(document).on('DOMContentLoaded', function (e) {
     var content = 'This is a sample postcard, that I have written from sunny Vancouver.',
         location = 'Vancouver, B.C.';
 
     appendNewPostcard(content, location);
 
-    x$('#newPostcard').on('submit', function () {
+    $('#newPostcard').on('submit', function () {
         handleNewPostcard();
         return false;
     });
-});
+});*/
 
 function handleNewPostcard() {
     var postcardBox = x$('textarea#postcardContents')[0],
@@ -100,7 +100,7 @@ function shakeHandler() {
     }, 5000);
 }
 
-x$(document).on('deviceready', function () {
+/*$(document).on('deviceready', function () {
     var previousReading = {
         x: null,
         y: null,
@@ -130,7 +130,7 @@ x$(document).on('deviceready', function () {
 	}, null, { frequency: 300 });
 });
 
-
+*/
 var longTouch = {
     element: null,
     since: null

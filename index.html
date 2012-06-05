@@ -16,6 +16,8 @@
 
 
 <script type="text/javascript">
+
+
 $(document).ready(function() {
     function sendImage(src) {
         
@@ -30,36 +32,139 @@ $(document).ready(function() {
             
             var url = 'http://litio.net/chancla/sube.php';
             var params = {image: imageData};
+            $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
+            
             // send the data
-            $.post(url, params, function(data) {
+            //$.post(url, params, function(data) {
+
+                var file = {
+                    file: params['image'],
+                    filename: "my_cool_image.jpg"
+                };
+
+                var jqxhr = $.ajax({
+                    url: "http://michancla.es/rest/file.json",
+                    type: 'POST',
+                    dataType: 'json',
+                    //data: JSON.stringify(obj),
+                    data: file,
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert('No internet connection? Check your settings');
+                        console.log(JSON.stringify(XMLHttpRequest));
+                        console.log(JSON.stringify(textStatus));
+                        console.log(JSON.stringify(errorThrown));
+                    },
+                    success: function (data) {
+                        alert("siip");
+                        //console.log(JSON.stringify(data));
+                        $.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
+                    }
+                });
                 
                 // Display the selected image on send complete
-                
-                $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
-                $.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
-                
-                
-            });
+  
+            //});
         }
         
         function fail(message) { alert(message); }
     }
 
+    function filechanged(){
+
+        console.log(this);
+    }
+
     function testImage() {
+
+
         //alert("You have been logged out.");
             //$.mobile.loading( 'show', { text: "uploading photo" });
             //$.mobile.loading( 'show' );
             //$.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
-            var jqxhr = $.ajax( "http://michancla.es/rest2/node.json" )
-    .done(function() { alert("success"); })
-    .fail(function() { alert("error"); })
-    .always(function() { alert("complete"); });
+
+
+
+  try {
+
+var obj={
+    node:{
+      title: 'Siiiiii',
+      type:'chancla', //Whatever your content type is..
+      status: 1,
+      /*language:'en', //this attribute is optional, en for english
+      body: { 
+        und: [
+        {value:'sdasdasd', format:'full_html'} //This is the body, if you have other fields its supposed to be similar, just body would be the field name
+        ]
+      } */
+    }
+  };
+
+    var jqxhr = $.ajax({
+      url: "http://michancla.es/rest/node.json",
+      type: 'POST',
+      dataType: 'json',
+      //data: JSON.stringify(obj),
+      data: "node[type]=chancla&node[title]=Holaaaa&node[language]=''&node[field_test][und][0][value]=your values",
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        alert('No internet connection? Check your settings');
+        console.log(JSON.stringify(XMLHttpRequest));
+        console.log(JSON.stringify(textStatus));
+        console.log(JSON.stringify(errorThrown));
+      },
+      success: function (data) {
+
+
+
+
+
+
+
+            alert("siip");
+          console.log(JSON.stringify(data));
+      }
+    });
+  }
+  catch (error) { alert("We encountered an error - " + error); }
+
+
 
     }
     
     $('.send-image').click(function () { sendImage($(this).val()); }); 
     $('.test').click(function () { testImage(); }); 
+    $('.filefield').change(function () { upFoto(); }); 
 });
+
+
+
+function upFoto(){
+//console.log($('.filefield').attr("files")[0]);
+
+                var file = {
+                    file: "hjghgkhghgjhghjghghjkasdadfsadsf".toString('base64'),
+                    filename: "my_cool_image.jpg"
+                };
+
+                var jqxhr = $.ajax({
+                    url: "http://michancla.es/rest/file.json",
+                    type: 'POST',
+                    dataType: 'json',
+                    //data: JSON.stringify(obj),
+                    data: file,
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert('No internet connection? Check your settings');
+                        console.log(JSON.stringify(XMLHttpRequest));
+                        console.log(JSON.stringify(textStatus));
+                        console.log(JSON.stringify(errorThrown));
+                    },
+                    success: function (data) {
+                        alert("siip");
+                        console.log(JSON.stringify(data));
+                    }
+                });
+
+}
 
 </script>
 
@@ -92,6 +197,8 @@ $(document).ready(function() {
                 <input type="button" class="send-image" value="library" />
                 <hr />
                 <input type="button" class="test" value="test" />
+
+                <input type="file" name="tobase64file" class="filefield" />
             </div>
         </div>
 
