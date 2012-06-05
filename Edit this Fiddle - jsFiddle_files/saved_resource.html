@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://fiddle.jshell.net/_display/ -->
+<html class="ui-mobile"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="http://fiddle.jshell.net/_display/">--><base href=".">
+  
+  <title>- jsFiddle demo</title>
+  
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.mobile-1.0.1.min.js"></script>
+  
+  
+  <link rel="stylesheet" type="text/css" href="result-light.css">
+  
+  <style type="text/css">
+    
+  </style>
+  
+
+
+<script type="text/javascript">//<![CDATA[ 
+$(window).load(function(){
+$.ajax({
+  url: "http://michancla.es/rest/node.json",
+  type: 'GET',
+  success: function () {
+            alert("siiii");
+          console.log(JSON.stringify(data));
+      },
+  dataType: 'json'
+});
+});//]]>  
+
+</script>
+
+
+</head>
+<body class="ui-mobile-viewport"><div data-role="page" tabindex="0" class="ui-page ui-body-[object Object] ui-page-active" style="min-height: 534px; ">
+  <input value="test" id="myContainer" myattr="someVal" class="ui-input-text ui-body-[object Object] ui-corner-all ui-shadow-inset">
+
+<div id="myContainer2">
+<input value="test2" myattr="someVal" class="ui-input-text ui-body-[object Object] ui-corner-all ui-shadow-inset">
+    <input value="test3" myattr="someVal1" class="ui-input-text ui-body-[object Object] ui-corner-all ui-shadow-inset">
+
+    <input value="test4" myattr="someVal1" class="ui-input-text ui-body-[object Object] ui-corner-all ui-shadow-inset">
+
+    <input value="test5" myattr="someVal1" class="ui-input-text ui-body-[object Object] ui-corner-all ui-shadow-inset">
+
+    
+</div> 
+  
+
+
+
+
+
+</div><div class="ui-loader ui-body-a ui-corner-all" style="top: 267px; "><span class="ui-icon ui-icon-loading spin"></span><h1>loading</h1></div></body></html>

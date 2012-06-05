@@ -4,60 +4,119 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
         </title>
-        <script type="text/javascript" charset="utf8" src="phonegap.js"></script>
-        <script type="text/javascript" charset="utf8" src="js/app.js"></script>
+
         <link rel="stylesheet" href="css/jquery.mobile-1.1.0.min.css" />
         <link rel="stylesheet" href="css/style.css" />
         <script src="js/jquery.min.js">
         </script>
-        <script src="js/jquery.mobile-1.1.0.min.js">
+        <script src="js/jjjjjjjjquery.mobile-1.1.0.min.js">
         </script>
 
 
 
 <script type="text/javascript">
+$( '#page1' ).live( 'pageinit',function(event){
+  //alert( 'This page was just enhanced by jQuery Mobile!' );
+});
+
+function myFunction(data){
+  alert ("hola");
+ } 
+
 $(document).ready(function() {
-    function sendImage(src) {
-        
-        // Set the image source [library || camera]
-        src = (src == 'library') ? Camera.PictureSourceType.PHOTOLIBRARY : Camera.PictureSourceType.CAMERA;
-        
-        // Aquire the image -> Phonegap API
-        navigator.camera.getPicture(success, fail, {quality: 45, sourceType: src, destinationType: 0});
-        
-        // Successfully aquired image data -> base64 encoded string of the image file
-        function success(imageData) {
-            
-            var url = 'http://litio.net/chancla/sube.php';
-            var params = {image: imageData};
-            // send the data
-            $.post(url, params, function(data) {
-                
-                // Display the selected image on send complete
-                
-                $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
-                $.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
-                
-                
-            });
-        }
-        
-        function fail(message) { alert(message); }
-    }
 
     function testImage() {
-        //alert("You have been logged out.");
-            //$.mobile.loading( 'show', { text: "uploading photo" });
-            //$.mobile.loading( 'show' );
-            //$.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
-            var jqxhr = $.ajax( "http://michancla.es/rest2/node.json" )
+
+
+
+
+
+var jqxhr = $.ajax( "http://michancla.es/rest2/node.json" )
     .done(function() { alert("success"); })
     .fail(function() { alert("error"); })
     .always(function() { alert("complete"); });
 
+
+
+/*
+        // Assign handlers immediately after making the request,
+// and remember the jqxhr object for this request
+var jqxhr = $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+  {
+    tags: "cat",
+    tagmode: "any",
+    format: "json"
+  }, function() {
+  alert("success");
+})
+.success(function() { alert("second success"); })
+.error(function() { alert("error"); })
+.complete(function() { alert("complete"); });
+
+// perform other work here ...
+
+// Set another completion function for the request above
+jqxhr.complete(function(){ alert("second complete"); });
+
+*/
+
+/*
+
+
+  {
+    tags: "cat",
+    tagmode: "any",
+    format: "json"
+  }
+
+  var obj={
+    node:{
+      title: 'New node test',
+      type:'chancla', //Whatever your content type is..
+      //language:'en', //this attribute is optional, en for english
+      body: { 
+        und: [
+        {value:'sdasdasd', format:'full_html'} //This is the body, if you have other fields its supposed to be similar, just body would be the field name
+        ]
+      }
     }
-    
-    $('.send-image').click(function () { sendImage($(this).val()); }); 
+  };
+
+
+  try {
+    $.ajax({
+      url: "http://michancla.es/rest/node.json",
+      type: 'GET',
+      dataType: 'jsonp',
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        alert('page_node_pages - fffailed to retrieve pages');
+        console.log(JSON.stringify(XMLHttpRequest));
+        console.log(JSON.stringify(textStatus));
+        console.log(JSON.stringify(errorThrown));
+      },
+      success: function (data) {
+            alert("siiii");
+          console.log(JSON.stringify(data));
+      }
+    });
+  }
+  catch (error) { alert("page_node_pages - " + error); }
+
+
+*/
+
+     /* $.getJSON("http://michancla.es/rest/?tags=cat&tagmode=any&format=json&jsoncallback=?",
+        function(data){
+            alert (data);
+            console.debug(data);
+          $.each(data.items, function(i,item){
+            $("<img/>").attr("src", item.media.m).appendTo("#images");
+            if ( i == 3 ) return false;
+          }); 
+        });*/
+
+    }
+
     $('.test').click(function () { testImage(); }); 
 });
 
@@ -92,6 +151,9 @@ $(document).ready(function() {
                 <input type="button" class="send-image" value="library" />
                 <hr />
                 <input type="button" class="test" value="test" />
+                <div id="images">
+
+</div>
             </div>
         </div>
 
