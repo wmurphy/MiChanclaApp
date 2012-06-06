@@ -55,7 +55,7 @@ $(document).ready(function() {
                     success: function (data) {
                         upload_id = data.fid;
                         $('#butSave').removeClass('ui-disabled');
-                        alert("fid from server: " + upload_id)
+                        //alert("fid from server: " + upload_id)
                         //console.log(JSON.stringify(data));
                         
                     }
@@ -77,13 +77,14 @@ $(document).ready(function() {
             //$.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
 
         try {
+            var nodeInfo = "node[type]=chancla&node[title]=" + $("#description").val() + "&node[language]=''&node[field_test][und][0][value]='another test'&node[field_foto][und][0][fid]=" + upload_id;
 
             var jqxhr = $.ajax({
                 url: "http://michancla.es/rest/node.json",
                 type: 'POST',
                 dataType: 'json',
                 //data: JSON.stringify(obj),
-                data: "node[type]=chancla&node[title]='Foto'&node[language]=''&node[field_test][und][0][value]='your values'&node[field_foto][und][0][fid]=" + upload_id,
+                data: nodeInfo,
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert('No internet connection? Check your settings');
                     console.log(JSON.stringify(XMLHttpRequest));
@@ -91,10 +92,10 @@ $(document).ready(function() {
                     console.log(JSON.stringify(errorThrown));
                 },
                 success: function (data) {
-                    $('#butSave').removeClass('ui-disabled');
+                    alert ("node saved");
                 } 
             });
-            console.log(JSON.stringify(data));
+            //console.log(JSON.stringify(data));
         }
         catch (error) { alert("We encountered an error - " + error); }
     }
