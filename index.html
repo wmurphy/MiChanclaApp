@@ -55,7 +55,7 @@ $(document).ready(function() {
                     success: function (data) {
                         upload_id = data.fid;
                         $('#butSave').removeClass('ui-disabled');
-
+                        alert("fid from server: " + upload_id)
                         //console.log(JSON.stringify(data));
                         
                     }
@@ -83,7 +83,7 @@ $(document).ready(function() {
                 type: 'POST',
                 dataType: 'json',
                 //data: JSON.stringify(obj),
-                data: "node[type]=chancla&node[title]='Foto'&node[language]=''&node[field_test][und][0][value]='your values'&node[field_foto][und][und]=" + upload_id,
+                data: "node[type]=chancla&node[title]='Foto'&node[language]=''&node[field_test][und][0][value]='your values'&node[field_foto][und][0][fid]=" + upload_id,
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert('No internet connection? Check your settings');
                     console.log(JSON.stringify(XMLHttpRequest));
@@ -92,7 +92,6 @@ $(document).ready(function() {
                 },
                 success: function (data) {
                     $('#butSave').removeClass('ui-disabled');
-                    alert(data.fid);
                 } 
             });
             console.log(JSON.stringify(data));
