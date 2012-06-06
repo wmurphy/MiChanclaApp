@@ -14,9 +14,11 @@
 
 
 <script type="text/javascript">
-var upload_id;
+
 
 $(document).ready(function() {
+    var upload_id;
+
     function sendImage(src) {
         
         // Set the image source [library || camera]
@@ -93,8 +95,8 @@ $(document).ready(function() {
         console.log(JSON.stringify(errorThrown));
       },
       success: function (data) {
-        //$('#butSave').removeClass('ui-disabled');
-        alert('siiiii ' + data.nid);
+        $('#butSave').removeClass('ui-disabled');
+        alert(data.fid);
       } 
 });
 
@@ -109,11 +111,12 @@ $(document).ready(function() {
 
 
     }
-      
+    
+    $('.butSave').click(alert("holaaaaa")); 
 
 });
 
-$('#butSave').click(function () { alert("hola"); });
+
 
 </script>
 
@@ -191,7 +194,7 @@ $('#butSave').click(function () { alert("hola"); });
                             </option>
                         </select>
                     </div>
-                    <input id="butSave" type="submit" class="ui-disabled" data-theme="e" value="Save" />
+                    <input id="butSave" type="submit" class="butSave ui-disabled" data-theme="e" value="Save" />
                 </form>
             </div>
         </div>
