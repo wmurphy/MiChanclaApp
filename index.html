@@ -80,21 +80,6 @@ $(document).ready(function() {
 
 
   try {
-
-var obj={
-    node:{
-      title: 'Siiiiii',
-      type:'chancla', //Whatever your content type is..
-      status: 1,
-      /*language:'en', //this attribute is optional, en for english
-      body: { 
-        und: [
-        {value:'sdasdasd', format:'full_html'} //This is the body, if you have other fields its supposed to be similar, just body would be the field name
-        ]
-      } */
-    }
-  };
-
     var jqxhr = $.ajax({
       url: "http://michancla.es/rest/node.json",
       type: 'POST',
@@ -108,8 +93,8 @@ var obj={
         console.log(JSON.stringify(errorThrown));
       },
       success: function (data) {
-        $('#butSave').removeClass('ui-disabled');
-        //alert(data.fid);
+        //$('#butSave').removeClass('ui-disabled');
+        alert('siiiii ' + data.nid);
       } 
 });
 
