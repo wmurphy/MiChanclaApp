@@ -18,7 +18,6 @@
 
 $(document).ready(function() {
     var upload_id;
-
     function sendImage(src) {
         
         // Set the image source [library || camera]
@@ -72,47 +71,37 @@ $(document).ready(function() {
 
 
     function saveNode() {
-
-
         //alert("You have been logged out.");
             //$.mobile.loading( 'show', { text: "uploading photo" });
             //$.mobile.loading( 'show' );
             //$.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
 
+        try {
 
-
-  try {
-    var jqxhr = $.ajax({
-      url: "http://michancla.es/rest/node.json",
-      type: 'POST',
-      dataType: 'json',
-      //data: JSON.stringify(obj),
-      data: "node[type]=chancla&node[title]='Foto'&node[language]=''&node[field_test][und][0][value]='your values'&node[field_foto][und][und]=" + upload_id,
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
-        alert('No internet connection? Check your settings');
-        console.log(JSON.stringify(XMLHttpRequest));
-        console.log(JSON.stringify(textStatus));
-        console.log(JSON.stringify(errorThrown));
-      },
-      success: function (data) {
-        $('#butSave').removeClass('ui-disabled');
-        alert(data.fid);
-      } 
-});
-
-
-
-
-          console.log(JSON.stringify(data));
-
-  }
-  catch (error) { alert("We encountered an error - " + error); }
-
-
-
+            var jqxhr = $.ajax({
+                url: "http://michancla.es/rest/node.json",
+                type: 'POST',
+                dataType: 'json',
+                //data: JSON.stringify(obj),
+                data: "node[type]=chancla&node[title]='Foto'&node[language]=''&node[field_test][und][0][value]='your values'&node[field_foto][und][und]=" + upload_id,
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert('No internet connection? Check your settings');
+                    console.log(JSON.stringify(XMLHttpRequest));
+                    console.log(JSON.stringify(textStatus));
+                    console.log(JSON.stringify(errorThrown));
+                },
+                success: function (data) {
+                    $('#butSave').removeClass('ui-disabled');
+                    alert(data.fid);
+                } 
+            });
+            console.log(JSON.stringify(data));
+        }
+        catch (error) { alert("We encountered an error - " + error); }
     }
     
-    $('.butSave').click(alert("holaaaaa")); 
+    $('.send-image').click(function () { sendImage($(this).val()); });
+    $('#butSave').click(function () { saveNode(); }); 
 
 });
 
@@ -194,7 +183,7 @@ $(document).ready(function() {
                             </option>
                         </select>
                     </div>
-                    <input id="butSave" type="submit" class="butSave ui-disabled" data-theme="e" value="Save" />
+                    <input id="butSave" type="submit" class="ui-disabled" data-theme="e" value="Save" />
                 </form>
             </div>
         </div>
