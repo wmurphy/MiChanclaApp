@@ -2,14 +2,12 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-        </title>
+        <title>Mi Chancla</title>
         <script type="text/javascript" charset="utf8" src="phonegap.js"></script>
         <script type="text/javascript" charset="utf8" src="js/app.js"></script>
         <link rel="stylesheet" href="css/jquery.mobile-1.1.0.min.css" />
         <link rel="stylesheet" href="css/style.css" />
-        <script src="js/jquery.min.js">
-        </script>
+        <script src="js/jquery.min.js"></script>
         <script src="js/jquery.mobile-1.1.0.min.js">
         </script>
 
@@ -54,8 +52,8 @@ $(document).ready(function() {
                         console.log(JSON.stringify(errorThrown));
                     },
                     success: function (data) {
+                        upload_id = data.fid;
                         $('#butSave').removeClass('ui-disabled');
-                        alert(data.fid);
 
                         //console.log(JSON.stringify(data));
                         
@@ -102,7 +100,7 @@ var obj={
       type: 'POST',
       dataType: 'json',
       //data: JSON.stringify(obj),
-      data: "node[type]=chancla&node[title]=Holaaaa&node[language]=''&node[field_test][und][0][value]=your values",
+      data: "node[type]=chancla&node[title]='Foto'&node[language]=''&node[field_test][und][0][value]='your values'&node[field_foto][und][und]=" + upload_id,
       error: function (XMLHttpRequest, textStatus, errorThrown) {
         alert('No internet connection? Check your settings');
         console.log(JSON.stringify(XMLHttpRequest));
@@ -111,7 +109,7 @@ var obj={
       },
       success: function (data) {
         $('#butSave').removeClass('ui-disabled');
-        alert(data.fid);
+        //alert(data.fid);
       } 
 });
 
@@ -126,12 +124,11 @@ var obj={
 
 
     }
-    
-    $('.send-image').click(function () { sendImage($(this).val()); }); 
+      
 
 });
 
-
+$('#butSave').click(function () { alert("hola"); });
 
 </script>
 
