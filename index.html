@@ -92,7 +92,7 @@ $(document).ready(function() {
                     console.log(JSON.stringify(errorThrown));
                 },
                 success: function (data) {
-                    alert ("node saved");
+                    $.mobile.changePage( $("#pagConfirm") );
                 } 
             });
             //console.log(JSON.stringify(data));
@@ -151,7 +151,6 @@ $(document).ready(function() {
 
 
 
-                <form action="#chancla_details" method="POST">
                     <div data-role="fieldcontain">
                         <fieldset data-role="controlgroup">
                             <label for="description">
@@ -183,8 +182,32 @@ $(document).ready(function() {
                             </option>
                         </select>
                     </div>
-                    <input id="butSave" type="submit" class="ui-disabled" data-theme="e" value="Save" />
-                </form>
+                    <button type="button" id="butSave" class="ui-disabled" data-theme="e" >Save</button>
+            </div>
+        </div>
+
+
+        <div data-role="page" id="pagConfirm">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    Success
+                </h3>
+            </div>
+            <div data-role="content">
+                <div>
+                    <p>
+                        <strong>
+                            You uploaded your chanclas!
+                            <br />
+                            <br />
+                        </strong>
+                    </p>
+                </div>
+                <div>
+                    <a data-role="button"  href="#page1">
+                    Send another photo
+                  </a>
+                </div>
             </div>
         </div>
 
