@@ -1,4 +1,0 @@
-CamExample
-==========
-
-PhoneGap Test App
