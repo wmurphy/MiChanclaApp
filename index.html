@@ -16,7 +16,7 @@
 
 
 <script type="text/javascript">
-
+var upload_id;
 
 $(document).ready(function() {
     function sendImage(src) {
@@ -25,21 +25,20 @@ $(document).ready(function() {
         src = (src == 'library') ? Camera.PictureSourceType.PHOTOLIBRARY : Camera.PictureSourceType.CAMERA;
         
         // Aquire the image -> Phonegap API
-        navigator.camera.getPicture(success, fail, {quality: 45, sourceType: src, destinationType: 0});
+        navigator.camera.getPicture(success, fail, {quality: 50, sourceType: src, destinationType: 0});
         
         // Successfully aquired image data -> base64 encoded string of the image file
         function success(imageData) {
             
-            var url = 'http://litio.net/chancla/sube.php';
             var params = {image: imageData};
             $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
-            
+            $.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
             // send the data
             //$.post(url, params, function(data) {
 
                 var file = {
                     file: params['image'],
-                    filename: "my_cool_image.jpg"
+                    //filename: "my_cool_image.jpg"
                 };
 
                 var jqxhr = $.ajax({
@@ -55,9 +54,11 @@ $(document).ready(function() {
                         console.log(JSON.stringify(errorThrown));
                     },
                     success: function (data) {
-                        alert("siip");
+                        $('#butSave').removeClass('ui-disabled');
+                        alert(data.fid);
+
                         //console.log(JSON.stringify(data));
-                        $.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
+                        
                     }
                 });
                 
@@ -69,12 +70,8 @@ $(document).ready(function() {
         function fail(message) { alert(message); }
     }
 
-    function filechanged(){
 
-        console.log(this);
-    }
-
-    function testImage() {
+    function saveNode() {
 
 
         //alert("You have been logged out.");
@@ -113,17 +110,16 @@ var obj={
         console.log(JSON.stringify(errorThrown));
       },
       success: function (data) {
+        $('#butSave').removeClass('ui-disabled');
+        alert(data.fid);
+      } 
+});
 
 
 
 
-
-
-
-            alert("siip");
           console.log(JSON.stringify(data));
-      }
-    });
+
   }
   catch (error) { alert("We encountered an error - " + error); }
 
@@ -132,39 +128,10 @@ var obj={
     }
     
     $('.send-image').click(function () { sendImage($(this).val()); }); 
-    $('.test').click(function () { testImage(); }); 
-    $('.filefield').change(function () { upFoto(); }); 
+
 });
 
 
-
-function upFoto(){
-//console.log($('.filefield').attr("files")[0]);
-
-                var file = {
-                    file: "hjghgkhghgjhghjghghjkasdadfsadsf".toString('base64'),
-                    filename: "my_cool_image.jpg"
-                };
-
-                var jqxhr = $.ajax({
-                    url: "http://michancla.es/rest/file.json",
-                    type: 'POST',
-                    dataType: 'json',
-                    //data: JSON.stringify(obj),
-                    data: file,
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert('No internet connection? Check your settings');
-                        console.log(JSON.stringify(XMLHttpRequest));
-                        console.log(JSON.stringify(textStatus));
-                        console.log(JSON.stringify(errorThrown));
-                    },
-                    success: function (data) {
-                        alert("siip");
-                        console.log(JSON.stringify(data));
-                    }
-                });
-
-}
 
 </script>
 
@@ -195,10 +162,6 @@ function upFoto(){
                 </div>
                 <input type="button" class="send-image" value="camera" />
                 <input type="button" class="send-image" value="library" />
-                <hr />
-                <input type="button" class="test" value="test" />
-
-                <input type="file" name="tobase64file" class="filefield" />
             </div>
         </div>
 
@@ -246,7 +209,7 @@ function upFoto(){
                             </option>
                         </select>
                     </div>
-                    <input type="submit" data-theme="e" value="Send" />
+                    <input id="butSave" type="submit" class="ui-disabled" data-theme="e" value="Save" />
                 </form>
             </div>
         </div>
