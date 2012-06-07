@@ -54,7 +54,7 @@ $(document).ready(function() {
                     },
                     success: function (data) {
                         upload_id = data.fid;
-                        $('#butSave').removeClass('ui-disabled');
+                        $('#butSave').removeClass('ui-btn-hidden');
                         //alert("fid from server: " + upload_id)
                         //console.log(JSON.stringify(data));
                         
@@ -77,7 +77,7 @@ $(document).ready(function() {
             //$.mobile.changePage( $("#chancla_details"), { transition: "slideup"} );
 
         try {
-            var nodeInfo = "node[type]=chancla&node[title]=" + $("#description").val() + "&node[language]=''&node[field_test][und][0][value]='another test'&node[field_foto][und][0][fid]=" + upload_id;
+            var nodeInfo = "node[type]=chancla&node[title]=" + html_sanitize($("#description").val()) + "&node[language]='und'&node[field_foto][und][0][fid]=" + upload_id;
 
             var jqxhr = $.ajax({
                 url: "http://michancla.es/rest/node.json",
@@ -182,7 +182,7 @@ $(document).ready(function() {
                             </option>
                         </select>
                     </div>
-                    <button type="button" id="butSave" class="ui-disabled" data-theme="e" >Save</button>
+                    <button type="button" id="butSave" class="ui-btn-hidden" data-theme="e" >Save</button>
             </div>
         </div>
 
