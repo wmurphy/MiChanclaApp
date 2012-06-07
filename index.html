@@ -86,7 +86,7 @@ $(document).ready(function() {
                 //data: JSON.stringify(obj),
                 data: nodeInfo,
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert('No internet connection? Check your settings');
+                    alert('No internet connection? Check your settings' + errorThrown + ' ' + textStatus );
                     console.log(JSON.stringify(XMLHttpRequest));
                     console.log(JSON.stringify(textStatus));
                     console.log(JSON.stringify(errorThrown));
